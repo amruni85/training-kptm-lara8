@@ -25,7 +25,7 @@
                     <td>{{ $training->id}}</td>
                     <td>{{$training->title}}</td>
                     <td>{{$training->trainer}}</td>
-                    <td>{{$training->user->name}}-{{$training->user->email}}</td>
+                    <td>{{$training->user->name}}<br>{{$training->user->email}}</td>
                     <!--<td>{{$training->created_at}}</td>-->
                     <td>{{$training->created_at ? $training->created_at->diffForHumans():'no date update'}}</td>
                     <td>{{$training->created_at ?? 'no date update'}}</td>
