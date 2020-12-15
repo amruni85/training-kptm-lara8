@@ -40,4 +40,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //buat relationship
+    // one user has many trainings, so relationship trainings() -- sebab ada PK
+    public function trainings(){
+        return $this->hasMany('App\Models\Training');
+    }
 }

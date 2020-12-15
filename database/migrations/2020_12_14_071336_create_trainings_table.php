@@ -18,6 +18,11 @@ class CreateTrainingsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('trainer');
+
+            //buat penambahan field
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

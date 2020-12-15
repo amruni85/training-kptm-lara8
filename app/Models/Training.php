@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Training extends Model
 {
     use HasFactory;
+
+    //buat relationship
+    //training belongs to user, so guna relationship user() -- ada FK
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }
