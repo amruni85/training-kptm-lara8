@@ -33,7 +33,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/trainings') }}">Training Lists guna URL</a> <!--yg ni xguna route, but if tukar URL kena manage-->
+                        <a class="nav-link" href="{{ route('traininglist') }}">Training Lists guna Named Route</a> <!--guna route name, so kalau ada tukar URL, still akan jumpa path tersebut guna named route define di web.php -->
+                        </li>
 
+                        <li class="nav-item">
+                        <!--<a class="nav-link" href="{{ url('/create') }}">Training Lists guna URL</a> <!--yg ni xguna route, but if tukar URL kena manage-->
+                        <a class="nav-link" href="{{ route('createlists') }}">Create Training Lists guna Named Route</a> <!--guna route name, so kalau ada tukar URL, still akan jumpa path tersebut guna named route define di web.php -->
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
