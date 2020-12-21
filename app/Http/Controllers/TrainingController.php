@@ -101,4 +101,11 @@ class TrainingController extends Controller
         //return to trainings
         return redirect()->route('traininglist');
     }
+
+    public function delete (Training $training)
+    {
+        $training->delete();
+
+        return redirect()->route('traininglist');
+    }
 }
