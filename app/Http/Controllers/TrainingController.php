@@ -55,12 +55,50 @@ class TrainingController extends Controller
         return view('trainings.show', compact('training'));
     }
 
-    public function edit($id)
+/*    public function edit($id)
     {
         //find id
         $training = Training::find($id);
 
         //then retun to view
         return view('trainings.edit', compact('training'));
+    }
+*/
+    //guna binding - instantiate training instead of id -- pd route pass training shj
+    public function edit(Training $training)
+    {
+        //find id
+       // $training = Training::find($id); -- xperlu find bila instantiate sebab dh bind dlm $training
+
+        //then retun to view
+        return view('trainings.edit', compact('training'));
+    }
+/*
+    public function update($id, Request $request) //Request $request - data dari form edit utk diterima
+    {
+        //find id
+        $training = Training::find($id);
+
+        //update training with edited attributes
+        //method 1 blh guna POPO
+        //method 2 guna mass assignment
+        $training->update($request->only('title', 'description', 'trainer'));
+
+        //return to trainings
+        return redirect()->route('traininglist');
+    }
+*/
+    public function update(Training $training, Request $request) //Request $request - data dari form edit utk diterima
+    {
+        //find id
+        // $training = Training::find($id);
+
+        //update training with edited attributes
+        //method 1 blh guna POPO
+        //method 2 guna mass assignment
+        $training->update($request->only('title', 'description', 'trainer'));
+
+        //return to trainings
+        return redirect()->route('traininglist');
     }
 }

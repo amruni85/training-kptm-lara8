@@ -9,6 +9,8 @@ class Training extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'description', 'trainer'];
+
     //buat relationship
     //training belongs to user, so guna relationship user() -- ada FK
     public function user(){
