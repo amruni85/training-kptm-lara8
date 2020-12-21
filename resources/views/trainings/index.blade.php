@@ -38,6 +38,7 @@
                     @endforeach
                     </tbody>
                     </table>
+                    {{ $trainings->links()}} <!-- untuk pagination-->
                 </div>
             </div>
         </div>

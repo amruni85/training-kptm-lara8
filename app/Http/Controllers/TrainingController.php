@@ -11,7 +11,8 @@ class TrainingController extends Controller
 {
     public function index(){
         //query trainings from trainings table using model
-        $trainings = \App\Models\Training::all();
+        //$trainings = \App\Models\Training::all();
+        $trainings = \App\Models\Training::paginate(5); //by default akan display 15 lists per page..kalau nak customize cth display 5 shj letak (5)
 
        // dd($trainings); //dd = dump n die
 
