@@ -29,6 +29,9 @@
                     <!--<td>{{$training->created_at}}</td>-->
                     <td>{{$training->created_at ? $training->created_at->diffForHumans():'no date update'}}</td>
                     <td>{{$training->created_at ?? 'no date update'}}</td>
+                    <td>
+                    <a href="{{route('training:show', $training)}}" class="btn btn-primary">View</a>
+                    </td>
                     </tr>
                     @endforeach
                     </tbody>
