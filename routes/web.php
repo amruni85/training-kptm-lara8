@@ -21,10 +21,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/trainings', [App\Http\Controllers\TrainingController::class, 'index']);
+//Route::get('/trainings', [App\Http\Controllers\TrainingController::class, 'index'])->name('trainings'); //tanpa named routes
+Route::get('/trainings', [App\Http\Controllers\TrainingController::class, 'index'])->name('traininglist'); //->name(''):named routes
 
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index']);
 //Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->middleware('auth');
 
 Route::get('/trainings/create',[App\Http\Controllers\TrainingController::class, 'create']);
+Route::get('/trainings/create',[App\Http\Controllers\TrainingController::class, 'create'])->name('createlists');
+
 Route::post('/trainings/create',[App\Http\Controllers\TrainingController::class, 'store']);
+
+Route::get('/trainings/{id}', [App\Http\Controllers\TrainingController::class, 'show'])->name('training:show');
