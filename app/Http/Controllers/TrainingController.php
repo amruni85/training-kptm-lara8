@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use File;
 use Storage;
+use App\Http\Requests\StoreTrainingRequest;
 
 use App\Models\Training; // define ni kalau xnak pgl \App\Models\Trainings() setiap kali nak guna ***
 
@@ -32,15 +33,15 @@ class TrainingController extends Controller
         return view('trainings.create');
     }
 
-    public function store(Request $request){ 
-        $this->validate(
-            $request,
-            [
-                'title' => 'required|min:5',
-                'description' => 'required',
-                'attachment' => 'required|mimes:pdf'
-            ]
-            );
+    public function store(StoreTrainingRequest $request){ 
+        // $this->validate(
+        //     $request,
+        //     [
+        //         'title' => 'required|min:5',
+        //         'description' => 'required',
+        //         'attachment' => 'required|mimes:pdf'
+        //     ]
+        //     );
         
         //Request $request amk data dari form create
         //dd($request->all()); // yang ni nak dump dulu nak tgk btl ke semua data dipegang
