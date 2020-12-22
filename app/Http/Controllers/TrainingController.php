@@ -121,7 +121,7 @@ class TrainingController extends Controller
         //update training with edited attributes
         //method 1 blh guna POPO
         //method 2 guna mass assignment
-        $training->update($request->only('title', 'description', 'trainer'));
+        $training->update($request->only('title', 'description', 'trainer', 'attachment'));
 
         //return to trainings
         //return redirect()->route('traininglist');
@@ -137,6 +137,9 @@ class TrainingController extends Controller
 
     public function delete (Training $training)
     {
+        if ($training->attachment != null){
+            Storage::disk('public')->delete($training->attachment);
+        }
         $training->delete();
 
        // return redirect()->route('traininglist');
