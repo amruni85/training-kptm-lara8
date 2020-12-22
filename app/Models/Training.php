@@ -20,6 +20,11 @@ class Training extends Model
         //getter $training->attachment_url
     public function getAttachmentUrlAttribute()
     {
+        if($this->attachment){     
         return asset('storage/'.$this->attachment);
+        }
+        else{
+            return 'https://www.google.com/search?q=no+image+available&tbm=isch&chips=q:no+image+available,online_chips:icon&hl=en&sa=X&ved=2ahUKEwi5nO6I3eDtAhX4nEsFHbhVC4kQ4lYoA3oECAEQHQ&biw=1349&bih=625#imgrc=KDNppyUHocvEWM';
+        }
     }
 }
