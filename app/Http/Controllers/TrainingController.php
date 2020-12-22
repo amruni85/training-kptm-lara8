@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use File;
+use Storage;
 
 use App\Models\Training; // define ni kalau xnak pgl \App\Models\Trainings() setiap kali nak guna ***
 
@@ -43,6 +45,17 @@ class TrainingController extends Controller
         $training->trainer = $request->trainer;
         $training->user_id = auth()->user()->id;
         $training->save();
+
+        if($request->hasFile('attachment')){
+            //rename file -cth : letak id - tarikh.jpg
+            $filename = $training->id.'-'.date("Y-m-d").'.'.$request->attachment->getClientOriginalExtension();
+
+            //store file on storage
+            Storage::disk('public')->put($filename, File::get($request->attachment));
+
+            //update row with filename
+            $training->update(['attachment'=>$filename]);
+        }
 
         //then return to index page or redirect to mana2 page
         //return redirect()->back();

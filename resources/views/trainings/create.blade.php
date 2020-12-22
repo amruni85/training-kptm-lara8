@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Create Training') }}</div>
 
                 <div class="card-body">
-                <form method="POST" action="">
+                <form method="POST" action="" enctype="multipart/form-data">
                 @csrf <!--nak elakkan 419 Page Expired -->
                     <div class="form-group">
                         <label>Title</label>
@@ -22,6 +22,10 @@
                     <div class="form-group">
                         <label>Trainer</label>
                         <input type="text" name="trainer" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Attachment</label>
+                        <input type="file" name="attachment" class="form-control">
                     </div>
                         <div class="form-group">
                         <button type="submit" class="btn btn-primary">Save</button>

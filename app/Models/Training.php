@@ -9,7 +9,7 @@ class Training extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'trainer'];
+    protected $fillable = ['title', 'description', 'trainer', 'attachment']; //penting utk mass assignment
 
     //buat relationship
     //training belongs to user, so guna relationship user() -- ada FK
