@@ -12,10 +12,23 @@ use App\Models\Training; // define ni kalau xnak pgl \App\Models\Trainings() set
 
 class TrainingController extends Controller
 {
-    public function index(){
-        $user = auth()->user(); // yg ni tambah sebab nk display training of one user only
-        $trainings = $user->trainings()->paginate(5);
+    public function index(Request $request){
 
+        if($request->keyword){
+            $search = $request->keyword;
+
+            //$trainings = Training::where('title','LIKE','%'.$search.'%') -- ni utk all users
+            //blh buat mcm ni jgk utk tgk user yg authenticate utk buat search -- authenticate user only
+            $trainings = auth()->user()->trainings()->where('title','LIKE','%'.$search.'%')
+                ->orWhere('trainer','LIKE','%'.$search.'%')
+                ->orderBy('created_at','desc')
+                ->paginate(5);
+            //tp bila guna orderBy- make sure value ada, if no value akan error--so kena set default value
+        } 
+        else{
+            $user = auth()->user(); // yg ni tambah sebab nk display training of one user only [get current authenticate user]
+            $trainings = $user->trainings()->paginate(5);
+        }
         //query trainings from trainings table using model
         //$trainings = \App\Models\Training::all();
        // $trainings = \App\Models\Training::paginate(5); //by default akan display 15 lists per page..kalau nak customize cth display 5 shj letak (5)

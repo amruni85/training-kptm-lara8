@@ -10,7 +10,20 @@
             </div>
             @endif
             <div class="card">
-                <div class="card-header">{{ __('Training Index') }}</div>
+                <div class="card-header">
+                    {{ __('Training Index') }}
+                    <div class="float-right">
+                        <form method="get" action="">
+                            <div class="input-group">
+                                <input type="text" name="keyword" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                
+                </div>
 
                 <div class="card-body">
                     <table class="table table-hover table-responsive">
@@ -44,7 +57,12 @@
                     @endforeach
                     </tbody>
                     </table>
-                    {{ $trainings->links()}} <!-- untuk pagination-->
+                    {{ $trainings
+                        ->appends([
+                        'keyword'=>request()->get('keyword') 
+                        ])
+                        ->links()}} <!-- untuk pagination-->
+                        <!-- ni kalau guna paginate utk bwk keyword pd next page guna ->appends....-->
                 </div>
             </div>
         </div>
