@@ -32,7 +32,16 @@ class TrainingController extends Controller
         return view('trainings.create');
     }
 
-    public function store(Request $request){ //Request $request amk data dari form create
+    public function store(Request $request){ 
+        $this->validate(
+            $request,
+            [
+                'title' => 'required|min:5',
+                'description' => 'required'
+            ]
+            );
+        
+        //Request $request amk data dari form create
         //dd($request->all()); // yang ni nak dump dulu nak tgk btl ke semua data dipegang
 
         //save data yang di keyin dari create form to trainings table
