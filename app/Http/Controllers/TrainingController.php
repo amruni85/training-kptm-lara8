@@ -121,7 +121,18 @@ class TrainingController extends Controller
         //update training with edited attributes
         //method 1 blh guna POPO
         //method 2 guna mass assignment
-        $training->update($request->only('title', 'description', 'trainer', 'attachment'));
+        $training->update($request->only('title', 'description', 'trainer',));
+
+        if($request->hasFile('attachment')){
+            //rename file -cth : letak id - tarikh.jpg
+            $filename = $training->id.'-'.date("Y-m-d").'.'.$request->attachment->getClientOriginalExtension();
+
+            //store file on storage
+            Storage::disk('public')->put($filename, File::get($request->attachment));
+
+            //update row with filename
+            $training->update(['attachment'=>$filename]);
+        }
 
         //return to trainings
         //return redirect()->route('traininglist');

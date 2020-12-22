@@ -22,6 +22,7 @@
                     <th>Trainee</th>
                     <th>Created At</th>
                     <th>Date</th>
+                    <th>Actions</th>
                     <tr>
                     </thead>
                     <tbody>
