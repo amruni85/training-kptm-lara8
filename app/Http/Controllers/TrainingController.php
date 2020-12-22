@@ -45,7 +45,15 @@ class TrainingController extends Controller
         $training->save();
 
         //then return to index page or redirect to mana2 page
-        return redirect()->back();
+        //return redirect()->back();
+
+        //guna alert
+        return redirect()
+            ->route('traininglist')
+            ->with([
+                'alert-type' => 'alert-success',
+                'alert' => 'Your training has been saved.'
+            ]);
     }
 
     public function show($id)
@@ -103,13 +111,29 @@ class TrainingController extends Controller
         $training->update($request->only('title', 'description', 'trainer'));
 
         //return to trainings
-        return redirect()->route('traininglist');
+        //return redirect()->route('traininglist');
+
+        //guna alert
+        return redirect()
+            ->route('traininglist')
+            ->with([
+                'alert-type' => 'alert-primary',
+                'alert' => 'Your training has been updated.'
+            ]);
     }
 
     public function delete (Training $training)
     {
         $training->delete();
 
-        return redirect()->route('traininglist');
+       // return redirect()->route('traininglist');
+
+        //guna alert
+        return redirect()
+            ->route('traininglist')
+            ->with([
+                'alert-type' => 'alert-danger',
+                'alert' => 'Your training has been deleted.'
+            ]);
     }
 }
