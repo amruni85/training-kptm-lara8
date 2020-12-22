@@ -37,7 +37,8 @@ class TrainingController extends Controller
             $request,
             [
                 'title' => 'required|min:5',
-                'description' => 'required'
+                'description' => 'required',
+                'attachment' => 'required|mimes:pdf'
             ]
             );
         

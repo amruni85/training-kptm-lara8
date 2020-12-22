@@ -37,7 +37,10 @@
                     </div>
                     <div class="form-group">
                         <label>Attachment</label>
-                        <input type="file" name="attachment" class="form-control">
+                        <input type="file" name="attachment" class="form-control" class="@error('attachment') is-invalid @enderror">
+                        @error('attachment')
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                     </div>
                         <div class="form-group">
                         <button type="submit" class="btn btn-primary">Save</button>
