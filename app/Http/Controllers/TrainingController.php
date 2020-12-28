@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\App;
 use File;
 use Storage;
 use App\Http\Requests\StoreTrainingRequest;
+use Mail;
 
 use App\Models\Training; // define ni kalau xnak pgl \App\Models\Trainings() setiap kali nak guna ***
 
@@ -80,6 +81,16 @@ class TrainingController extends Controller
             //update row with filename
             $training->update(['attachment'=>$filename]);
         }
+
+        //nak send email to user --setup kat bahagian .env, copy dari mailtrap.io utk testing = integrations - laravel
+        Mail::send('email.training-created', [
+            'title'=>$training->title,
+            'description'=>$training->description
+        ], function ($message){
+            $message->to('norma_mn@gapps.kptm.edu.my');
+            $message->subject('Training Created using Inline Mail');
+        });
+
 
         //then return to index page or redirect to mana2 page
         //return redirect()->back();
