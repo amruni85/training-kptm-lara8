@@ -8,6 +8,8 @@ use File;
 use Storage;
 use App\Http\Requests\StoreTrainingRequest;
 use Mail;
+use Notification;
+use App\Notifications\DeleteTrainingNotification;
 
 use App\Models\Training; // define ni kalau xnak pgl \App\Models\Trainings() setiap kali nak guna ***
 
@@ -188,6 +190,10 @@ class TrainingController extends Controller
 
     public function delete (Training $training)
     {
+        //tambah notification
+        $user = auth()->user();
+        Notification::send($user, new DeleteTrainingNotification());
+
         if ($training->attachment != null){
             Storage::disk('public')->delete($training->attachment);
         }
