@@ -49,9 +49,15 @@
                     <td>{{$training->created_at ? $training->created_at->diffForHumans():'no date update'}}</td>
                     <td>{{$training->created_at ?? 'no date update'}}</td>
                     <td>
+                    @can('view', $training) <!--policy utk appear view button kalau user blh view detail, kalau xboleh view hanya tgk detail on surface only  -->
                     <a href="{{route('training:show', $training)}}" class="btn btn-primary">View</a>
+                    @endcan
+                    @can('update', $training)
                     <a href="{{route('training:edit', $training)}}" class="btn btn-success">Edit</a>
+                    @endcan
+                    @can('delete', $training)
                     <a onclick="return confirm('Are you sure to delete?')" href="{{route('training:delete', $training)}}" class="btn btn-danger">Delete</a>
+                    @endcan
                     </td>
                     </tr>
                     @endforeach

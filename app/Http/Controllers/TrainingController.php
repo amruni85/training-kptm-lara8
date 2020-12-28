@@ -30,8 +30,10 @@ class TrainingController extends Controller
             //tp bila guna orderBy- make sure value ada, if no value akan error--so kena set default value
         } 
         else{
-            $user = auth()->user(); // yg ni tambah sebab nk display training of one user only [get current authenticate user]
-            $trainings = $user->trainings()->paginate(5);
+            $trainings = \App\Models\Training::all(); //nak dispaly semua traininglist
+            $trainings = \App\Models\Training::paginate(5);
+            //$user = auth()->user(); // yg ni tambah sebab nk display training of one user only [get current authenticate user]
+            //$trainings = $user->trainings()->paginate(5);
         }
         //query trainings from trainings table using model
         //$trainings = \App\Models\Training::all();
@@ -144,7 +146,7 @@ class TrainingController extends Controller
         //find id
        // $training = Training::find($id); -- xperlu find bila instantiate sebab dh bind dlm $training
 
-        //then retun to view
+       //then retun to view
         return view('trainings.edit', compact('training'));
     }
 /*
@@ -164,6 +166,8 @@ class TrainingController extends Controller
 */
     public function update(Training $training, Request $request) //Request $request - data dari form edit utk diterima
     {
+        $this->authorize('update', $training);
+        
         //find id
         // $training = Training::find($id);
 
@@ -197,6 +201,8 @@ class TrainingController extends Controller
 
     public function delete (Training $training)
     {
+        $this->authorize('delete', $training);
+
         //tambah notification
         $user = auth()->user();
         Notification::send($user, new DeleteTrainingNotification());
