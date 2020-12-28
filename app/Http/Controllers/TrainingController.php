@@ -116,11 +116,13 @@ class TrainingController extends Controller
             ]);
     }
 
-    public function show($id)
+    //public function show($id)
+    public function show(Training $training)
     {
         //find id on table using model
-        $training = Training::find($id);
+        //$training = Training::find($id);
 
+        $this->authorize('view', $training); // 'view' tu refer pd TrainingPolicy
         //dd($training);
 
         //return to view
