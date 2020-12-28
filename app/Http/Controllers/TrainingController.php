@@ -92,7 +92,10 @@ class TrainingController extends Controller
         // });
 
         //send emel to user using mailable class
-        Mail::to('norma_mn@gapps.kptm.edu.my')->send(new \App\Mail\TrainingCreated($training));
+        // Mail::to('norma_mn@gapps.kptm.edu.my')->send(new \App\Mail\TrainingCreated()); -- copy then paste pd SendEmailJob
+
+        //dispatch to job queue -- optimize time for frontend process
+        dispatch(new \App\Jobs\SendEmailJob($training));
 
         //then return to index page or redirect to mana2 page
         //return redirect()->back();
