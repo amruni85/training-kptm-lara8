@@ -10,6 +10,7 @@ use App\Http\Requests\StoreTrainingRequest;
 use Mail;
 use Notification;
 use App\Notifications\DeleteTrainingNotification;
+use App\Notifications\CreateTrainingNotification;
 
 use App\Models\Training; // define ni kalau xnak pgl \App\Models\Trainings() setiap kali nak guna ***
 
@@ -98,6 +99,10 @@ class TrainingController extends Controller
 
         //dispatch to job queue -- optimize time for frontend process
         dispatch(new \App\Jobs\SendEmailJob($training));
+
+        //tambah notification
+        $user = auth()->user();
+        Notification::send($user, new CreateTrainingNotification());
 
         //then return to index page or redirect to mana2 page
         //return redirect()->back();
