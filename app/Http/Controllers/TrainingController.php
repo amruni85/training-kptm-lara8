@@ -222,4 +222,28 @@ class TrainingController extends Controller
                 'alert' => 'Your training has been deleted.'
             ]);
     }
+
+    public function forceDelete (Training $training)
+    {
+        $this->authorize('delete', $training);
+
+        //tambah notification
+        $user = auth()->user();
+        Notification::send($user, new DeleteTrainingNotification());
+
+        if ($training->attachment != null){
+            Storage::disk('public')->delete($training->attachment);
+        }
+        $training->forceDelete(); //delete permenantly from db
+
+       // return redirect()->route('traininglist');
+
+        //guna alert
+        return redirect()
+            ->route('traininglist')
+            ->with([
+                'alert-type' => 'alert-danger',
+                'alert' => 'Your training has been permenantly removed.'
+            ]);
+    }
 }
