@@ -44,3 +44,5 @@ Route::post('/trainings/{training}/edit', [App\Http\Controllers\TrainingControll
 Route::get('/trainings/{training}/delete', [App\Http\Controllers\TrainingController::class, 'delete'])->name('training:delete');
 
 Route::get('/trainings/{training}/force-delete', [App\Http\Controllers\TrainingController::class, 'forceDelete'])->name('training:forceDelete');
+
+Route::get('/admin/audit', [App\Http\Controllers\AuditController::class, 'audit'])->middleware(['auth','admin']);
