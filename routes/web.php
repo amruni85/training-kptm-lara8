@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::view('/test', 'admin.layouts.main' ); //-- ni nak test direct view to layout integrated
 Route::get('/', function () {
     return view('welcome');
 });
@@ -46,3 +46,4 @@ Route::get('/trainings/{training}/delete', [App\Http\Controllers\TrainingControl
 Route::get('/trainings/{training}/force-delete', [App\Http\Controllers\TrainingController::class, 'forceDelete'])->name('training:forceDelete');
 
 Route::get('/admin/audit', [App\Http\Controllers\AuditController::class, 'audit'])->middleware(['auth','admin']);
+
