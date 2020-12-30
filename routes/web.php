@@ -47,3 +47,5 @@ Route::get('/trainings/{training}/force-delete', [App\Http\Controllers\TrainingC
 
 Route::get('/admin/audit', [App\Http\Controllers\AuditController::class, 'audit'])->middleware(['auth','admin']);
 
+Route::get('/language/{locale}', [App\Http\Controllers\LocalizationController::class, 'changeLocale']);
+
